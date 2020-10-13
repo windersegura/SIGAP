@@ -41,7 +41,7 @@ export class UserController {
         user.role = role;
 
         //validate
-        const errors = await validate(user);
+        const errors = await validate(user, {validationError:{target: false, value: false}});
         if(errors.length > 0){
             return res.status(400).json(errors);
         }
@@ -50,6 +50,7 @@ export class UserController {
 
         const userRepository = getRepository(User);
         try{
+            user.hashPassword();
             await userRepository.save(user);
         }catch(e){
             return res.status(409).json({message: 'Username alrady exist!'});    
@@ -76,7 +77,7 @@ export class UserController {
         }
 
         
-        const errors = await validate(user);
+        const errors = await validate(user, {validationError: {target: false, value: false}});
 
         if(errors.length > 0){
             return res.status(404).json(errors)

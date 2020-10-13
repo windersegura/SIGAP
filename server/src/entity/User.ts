@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, UpdateDateColumn} from "typeorm";
 import{MinLength, IsNotEmpty} from 'class-validator';
-
+import * as bcryptjs from 'bcryptjs';
 //Todo is Email
 
 @Entity()
@@ -31,6 +31,13 @@ export class User {
     @UpdateDateColumn()
     updateAt: Date;
 
-    
+    hashPassword() : void {
+        const salt = bcryptjs.genSaltSync(10);
+        this.pass = bcryptjs.hashSync(this.pass, salt);
+    }
+
+    checkPassword(password: string) : boolean {
+        return bcryptjs.compareSync(password, this.pass)
+    }
 
 }
