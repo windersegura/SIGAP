@@ -82,30 +82,40 @@ export class AppComponent {
 
 
     this.navigationService.items = [
+      //Inicio
       {
-        type: 'link',
-        label: 'Dashboard',
-        route: '/',
-        icon: icLayers
-      },
-      
-      {
-        type: 'link',
-        label: 'Contribuyentes',
-        route: '/',
-        icon: icPerson
+        label: 'Inicio',
+        type: 'subheading',
+        children: [ {
+          type: 'link',
+          label: 'Inicio',
+          route: '/',
+          icon: icLayers
+        }]
       },
       {
-        type: 'link',
-        label: 'Viviendas',
-        route: '/',
-        icon: icHome
-      },
-      {
-        type: 'link',
-        label: 'Pagos',
-        route: '/',
-        icon: icListAlt
+        label: 'Operaciones',
+        type: 'subheading',
+        children: [
+          {
+            type: 'link',
+            label: 'Contribuyentes',
+            route: '/',
+            icon: icPerson
+          },
+          {
+            type: 'link',
+            label: 'Viviendas',
+            route: '/',
+            icon: icHome
+          },
+          {
+            type: 'link',
+            label: 'Pagos',
+            route: '/',
+            icon: icListAlt
+          }
+        ]
       }
     ];
   }

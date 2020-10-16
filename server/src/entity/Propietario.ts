@@ -3,6 +3,7 @@ import {MinLength, IsNotEmpty} from 'class-validator';
 import { Vivienda } from './Vivienda';
 
 @Entity()
+@Unique(['dpi'])
 export class Propietario {
     @PrimaryGeneratedColumn()
     id_propietario: number;
