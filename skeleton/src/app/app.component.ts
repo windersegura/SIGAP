@@ -12,6 +12,11 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SplashScreenService } from '../@vex/services/splash-screen.service';
 import { Style, StyleService } from '../@vex/services/style.service';
 import { ConfigName } from '../@vex/interfaces/config-name.model';
+import { group } from '@angular/animations';
+import icPerson from '@iconify/icons-ic/twotone-person';
+import icHome from '@iconify/icons-ic/twotone-home';
+import icListAlt from '@iconify/icons-ic/twotone-list-alt';
+import router from '../../../server/src/routes/auth';
 
 @Component({
   selector: 'vex-root',
@@ -82,6 +87,25 @@ export class AppComponent {
         label: 'Dashboard',
         route: '/',
         icon: icLayers
+      },
+      
+      {
+        type: 'link',
+        label: 'Contribuyentes',
+        route: '/',
+        icon: icPerson
+      },
+      {
+        type: 'link',
+        label: 'Viviendas',
+        route: '/',
+        icon: icHome
+      },
+      {
+        type: 'link',
+        label: 'Pagos',
+        route: '/',
+        icon: icListAlt
       }
     ];
   }

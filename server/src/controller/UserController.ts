@@ -13,7 +13,7 @@ export class UserController {
        if(users.length > 0){
             res.send(users);
        }else{
-            res.status(400).json({message: 'Not result'});
+            res.status(404).json({message: 'Not result'});
        }
 
    }
