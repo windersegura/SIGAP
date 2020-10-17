@@ -32,6 +32,12 @@ const routes: VexRoutes = [
         path: '',
         loadChildren: () => import('./pages/dashboards/dashboard-analytics/dashboard-analytics.module').then(m => m.DashboardAnalyticsModule),
       },
+      //rutas modulo proyecto
+      {
+        path: 'aguapotable',
+        loadChildren: './pages/aguapotable/aguapotable.module#AguapotableModule'
+      },
+      //Rutas extras
       {
         path: 'apps',
         children: [
