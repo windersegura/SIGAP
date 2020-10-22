@@ -10,11 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { VexModule } from '../../../@vex/vex.module';
 import { MatTableModule } from '@angular/material/table';
-
-
-
-
-
+import { AguapotableService } from 'src/app/services/aguapotable.service';
 
 
 
@@ -30,6 +26,7 @@ import { MatTableModule } from '@angular/material/table';
     VexModule,
     FormsModule,
     MatTableModule
-  ]
+  ],
+  providers:[AguapotableService]
 })
 export class AguapotableModule { }

@@ -33,12 +33,13 @@ export class UserController {
 
     //Create User
     static newUSer = async (req:Request, res:Response) =>{
-        const {user_name, pass, role} = req.body;
+        const {user_name, pass, role, email} = req.body;
         const user = new User();
 
         user.user_name = user_name;
         user.pass = pass;
         user.role = role;
+        user.email = email;
 
         //validate
         const errors = await validate(user, {validationError:{target: false, value: false}});

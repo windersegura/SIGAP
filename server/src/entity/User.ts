@@ -4,7 +4,7 @@ import * as bcryptjs from 'bcryptjs';
 //Todo is Email
 
 @Entity()
-@Unique(['user_name'])
+@Unique(['user_name', 'email'])
 export class User {
 
     @PrimaryGeneratedColumn()
@@ -13,6 +13,9 @@ export class User {
     @Column()
     @MinLength(6)
     user_name: string;
+
+    @Column()
+    email: string;
 
     @Column()
     @MinLength(6)

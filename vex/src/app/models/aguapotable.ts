@@ -37,3 +37,9 @@ export class Propietario implements iPropietario{
     }
 
 }
+
+export interface iVivienda {
+    id: string;
+    barrio: string;
+    descripcion: string;
+}

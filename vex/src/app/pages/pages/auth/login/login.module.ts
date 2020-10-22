@@ -12,6 +12,10 @@ import { IconModule } from '@visurel/iconify-angular';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { LoginService } from '../../../../auth/login.service';
+import { CookieService } from 'ngx-cookie-service';
+
+
 
 
 @NgModule({
@@ -28,7 +32,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTooltipModule,
     MatButtonModule,
     MatCheckboxModule
-  ]
+  ],
+  providers:[LoginService, CookieService]
 })
 export class LoginModule {
 }

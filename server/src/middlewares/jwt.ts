@@ -15,8 +15,8 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
         return res.status(401).json({message: 'No Autorizado'});
     }
 
-    const {userId, username} = jwtPayload;
-    const newToken = jwt.sign({userId, username}, config.jwtSecret, {expiresIn: '1h'});
+    const {userId, email} = jwtPayload;
+    const newToken = jwt.sign({userId, email}, config.jwtSecret, {expiresIn: '1h'});
     res.setHeader('token', newToken);
 
     //llamada next
