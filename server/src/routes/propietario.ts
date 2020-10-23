@@ -15,7 +15,7 @@ router.get('/:id', [checkJwt], PropietarioController.getById);
 
 //Create a new propietario
 
-router.post('/', [checkJwt], PropietarioController.createPropietario);
+router.post('/', [checkJwt],checkRole(['admin']), PropietarioController.createPropietario);
 
 //Edit propietario
 router.put('/:id', [checkJwt], PropietarioController.updatePropietario);

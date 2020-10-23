@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import {Propietario} from '../../../../models/aguapotable'
+import { MatDialog } from '@angular/material/dialog';
+import { ContribuyentesEditComponent } from '../contribuyentes-edit/contribuyentes-edit.component';
+import data from '@iconify/icons-ic/twotone-visibility';
+
 
 
 
@@ -12,10 +17,26 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ContribuyentesListComponent implements OnInit {
 
+  dataSource = new MatTableDataSource<Propietario>()
+  displayedColumns: string[] = [
+    'codigo', 'nombres', 'apellidos', 'dpi', 'direccion', 'acciones'
+  ]
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog(){
+   const dialogRef = this.dialog.open(ContribuyentesEditComponent, {
+      width:'500px',
+      data:{edit: false}
+    });
+    
+    dialogRef.afterClosed().subscribe(data =>{
+
+    }) 
+    
   }
 
 }
