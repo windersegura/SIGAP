@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Propietario } from '../../../../models/aguapotable'
+import { AguapotableService } from '../../../../services/aguapotable.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class ContribuyentesEditComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ContribuyentesEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private fb: FormBuilder)
+    private fb: FormBuilder,
+    private aguapotableService: AguapotableService)
    { }
 
   ngOnInit(): void {
@@ -42,6 +44,10 @@ export class ContribuyentesEditComponent implements OnInit {
     saveContrib(){
       this.propietario = this.form.value;
       console.log(this.propietario);
+      this.aguapotableService.createPropietario(this.propietario).subscribe(data=>{
+        console.log(data);
+      })
+
     }
     
     onClose(){

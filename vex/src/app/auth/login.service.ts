@@ -22,7 +22,8 @@ export class LoginService {
   }
 
   setToken(token:string){
-    this.cookie.set("auth", token);
+    localStorage.setItem("auth",token);
+    
   }
 
   getToken(){

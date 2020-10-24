@@ -106,7 +106,7 @@ export class AppComponent {
     this.navigationService.items = [
       {
         type: 'link',
-        label: 'Dashboard',
+        label: 'Inicio',
         route: '/',
         icon: icLayers,
         routerLinkActiveOptions: { exact: true }

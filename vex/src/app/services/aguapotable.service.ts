@@ -16,7 +16,7 @@ export class AguapotableService {
   }
 
   createPropietario(propietario: Propietario): Observable<Propietario>{
-    const url = 'http://localhost:3000/users';
+    const url = 'http://localhost:3000/propietarios';
     return this.http.post<Propietario>(url, propietario);
   }
   

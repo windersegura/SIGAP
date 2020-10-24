@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(params).subscribe(data =>{
       this.loginService.setToken(data.token)
-       this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/');
     },err =>{
       Swal.fire({
         icon: 'error',
