@@ -27,7 +27,7 @@ class AuthController{
             return res.status(400).json({message: 'Email or password incorrect'})
         }
 
-        const token = jwt.sign({userId: user.id, email: user.email}, config.jwtSecret, {expiresIn: '1h'})
+        const token = jwt.sign({userId: user.id, email: user.email}, config.jwtSecret)
        
         
         res.json({message: 'OK', token, user});

@@ -3,13 +3,10 @@ import {MinLength, IsNotEmpty} from 'class-validator';
 import { Vivienda } from './Vivienda';
 
 @Entity()
-@Unique(['dpi','codigo'])
+@Unique(['dpi'])
 export class Propietario {
     @PrimaryGeneratedColumn()
     id_propietario: number;
-
-    @Column()
-    codigo: number;
 
     @Column()
     @IsNotEmpty()

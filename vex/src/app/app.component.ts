@@ -37,6 +37,8 @@ import { ConfigName } from '../@vex/interfaces/config-name.model';
 import icMail from '@iconify/icons-ic/twotone-mail';
 import icPerson from '@iconify/icons-ic/twotone-person';
 import icHome from '@iconify/icons-ic/twotone-home';
+import icArchive from '@iconify/icons-ic/twotone-archive';
+import icHistory from '@iconify/icons-ic/twotone-history';
 
 @Component({
   selector: 'vex-root',
@@ -126,6 +128,18 @@ export class AppComponent {
             label: 'Viviendas',
             route: '/aguapotable/viviendas',
             icon: icHome
+          },
+          {
+            type:'link',
+            label: 'Pagos',
+            route:'',
+            icon: icBook
+          },
+          {
+            type: 'link',
+            label: 'Reportes',
+            route: '',
+            icon: icHistory
           }
         //   {
         //     type: 'dropdown',

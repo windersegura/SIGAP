@@ -58,7 +58,7 @@ export class PropietarioController{
 
         // Todo ok
 
-        res.send('Propietario Creado');
+        res.status(200).json({message: 'El Contribuyente fue guardado'});
 
     }
 

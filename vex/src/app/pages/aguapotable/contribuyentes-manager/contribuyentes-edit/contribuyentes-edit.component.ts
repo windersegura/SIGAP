@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Propietario } from '../../../../models/aguapotable'
 import { AguapotableService } from '../../../../services/aguapotable.service';
+import Swal from 'sweetalert2';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -20,6 +22,7 @@ export class ContribuyentesEditComponent implements OnInit {
     public dialogRef: MatDialogRef<ContribuyentesEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
+    private _snackBar: MatSnackBar,
     private aguapotableService: AguapotableService)
    { }
 
@@ -41,12 +44,27 @@ export class ContribuyentesEditComponent implements OnInit {
     }
   }
     
-    saveContrib(){
+  saveContrib(){
       this.propietario = this.form.value;
-      console.log(this.propietario);
-      this.aguapotableService.createPropietario(this.propietario).subscribe(data=>{
-        console.log(data);
-      })
+      //console.log(this.propietario);
+      this.aguapotableService.createPropietario(this.propietario).subscribe(data =>{
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Guardado',
+          text: 'Los datos han sido guardados',
+        })
+         
+        //this._snackBar.open('Los datos han sido guardados!', 'Aceptar', {duration: 2000});
+
+      },err =>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Credenciales incorrectas',
+        })
+      }
+      );
 
     }
     

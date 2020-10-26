@@ -17,7 +17,6 @@ export class LoginService {
   ) { }
 
   login(params:any): Observable<any> {
-
       return this.http.post(`http://localhost:3000/auth/login`, params);
   }
 
@@ -26,7 +25,16 @@ export class LoginService {
     
   }
 
-  getToken(){
-    this.cookie.get("auth");
+  logOut(){
+
+  }
+
+  isLogged(){
+    return !!(this.getToken());
+  }
+
+  public getToken():string{
+    //this.cookie.get("auth");
+    return localStorage.getItem("auth");
   }
 }

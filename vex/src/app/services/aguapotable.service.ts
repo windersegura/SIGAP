@@ -11,8 +11,12 @@ export class AguapotableService {
   constructor(private http: HttpClient) { }
 
   //contribuyentes
-  listContribuyentes(params:any): Observable<Propietario>{
-    return params
+  listContribuyentes(params?:any): Observable<Array<Propietario>>{
+    const url = 'http://localhost:3000/propietarios'
+    const options = {
+      params: params
+    }
+    return this.http.get<Array<Propietario>>(url, options)
   }
 
   createPropietario(propietario: Propietario): Observable<Propietario>{
