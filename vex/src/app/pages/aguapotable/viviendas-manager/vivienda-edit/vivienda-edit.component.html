@@ -1,0 +1,54 @@
+<div>
+    <h2>Registrar Nueva Vivienda</h2>
+    <h2>Editar Datos de la Vivienda </h2>
+</div>
+
+<form [formGroup]="form">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+        <mat-form-field fxFlex="auto">
+            <mat-label>Codigo</mat-label>
+            <input matInput formControlName="codigo" type="number" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="auto">
+            <mat-label>Barrio</mat-label>
+            <mat-select #fcbarrio matInput formControlName="barrio" name="barrio" id="id">
+                <mat-option *ngFor="let grupo of data_barrios" [value]="grupo.id">{{grupo.barrio}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+        <mat-form-field fxFlex="auto">
+            <mat-label>Nombres:</mat-label>
+            <input matInput type="text" readonly>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="auto">
+            <mat-label>Apellidos:</mat-label>
+            <input matInput type="text" readonly>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="auto">
+            <mat-label>Direccion:</mat-label>
+            <input matInput type="text" readonly>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+        <mat-form-field fxFlex="auto">
+            <mat-label>Telefono:</mat-label>
+            <input matInput type="text" readonly>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="auto">
+            <mat-label>DPI:</mat-label>
+            <input matInput type="text" readonly>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px" fxLayoutAlign="center center">
+        <button mat-raised-button><mat-icon>keyboard_backspace</mat-icon> Cerrar</button>
+        <button mat-raised-button color="primary" [disabled]="form.invalid"><mat-icon>save</mat-icon> Guardar</button>
+    </div>
+
+</form>

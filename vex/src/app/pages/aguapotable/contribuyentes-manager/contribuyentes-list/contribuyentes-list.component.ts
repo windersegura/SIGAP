@@ -8,11 +8,6 @@ import { ContribuyentesEditComponent } from '../contribuyentes-edit/contribuyent
 import data from '@iconify/icons-ic/twotone-visibility';
 import { AguapotableService } from '../../../../services/aguapotable.service';
 
-
-
-
-
-
 @Component({
   selector: 'vex-contribuyentes-list',
   templateUrl: './contribuyentes-list.component.html',

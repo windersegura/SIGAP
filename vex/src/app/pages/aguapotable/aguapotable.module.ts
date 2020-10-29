@@ -24,11 +24,14 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ContribuyentesEditComponent } from './contribuyentes-manager/contribuyentes-edit/contribuyentes-edit.component';
+import { ViviendaListComponent } from './viviendas-manager/vivienda-list/vivienda-list.component';
+import { ViviendaEditComponent } from './viviendas-manager/vivienda-edit/vivienda-edit.component';
+import { ConfigService } from '../../services/config.service';
 
 
 
 @NgModule({
-  declarations: [ViviendasManagerComponent, ContribuyentesManagerComponent, ContribuyentesListComponent, ContribuyentesEditComponent],
+  declarations: [ViviendasManagerComponent, ContribuyentesManagerComponent, ContribuyentesListComponent, ContribuyentesEditComponent, ViviendaListComponent, ViviendaEditComponent],
   imports: [
     CommonModule,
     AguapotableRoutingModule,
@@ -56,6 +59,6 @@ import { ContribuyentesEditComponent } from './contribuyentes-manager/contribuye
 
 
   ],
-  providers:[AguapotableService]
+  providers:[AguapotableService, ConfigService]
 })
 export class AguapotableModule { }

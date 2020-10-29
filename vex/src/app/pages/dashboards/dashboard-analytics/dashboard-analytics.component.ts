@@ -15,6 +15,10 @@ import icMoreVert from '@iconify/icons-ic/twotone-more-vert';
 })
 export class DashboardAnalyticsComponent implements OnInit {
 
+  centered = false;
+  disabled = false;
+  unbounded = false;
+
   tableColumns: TableColumn<Order>[] = [
     {
       label: '',

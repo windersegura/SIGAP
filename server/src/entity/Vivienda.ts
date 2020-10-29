@@ -7,10 +7,14 @@ import { Pago } from './Pago';
 
 
 @Entity()
+@Unique(['codigo'])
 export class Vivienda {
    
     @PrimaryGeneratedColumn()
     id_vivienda: number;
+
+    @Column()
+    codigo: number;
     
     @ManyToOne(type=> Barrio, barrio => barrio.viviendas )
     barrio: Barrio;

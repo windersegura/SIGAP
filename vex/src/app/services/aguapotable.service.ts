@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Propietario} from '../models/aguapotable'
+import { ConfigService } from './config.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AguapotableService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private config: ConfigService) { }
 
   //contribuyentes
   listContribuyentes(params?:any): Observable<Array<Propietario>>{
-    const url = 'http://localhost:3000/propietarios'
+    const url = `${this.config.appConfig.apiUrl}/propietarios`;
     const options = {
       params: params
     }
@@ -20,7 +23,7 @@ export class AguapotableService {
   }
 
   createPropietario(propietario: Propietario): Observable<Propietario>{
-    const url = 'http://localhost:3000/propietarios';
+    const url = `${this.config.appConfig.apiUrl}/propietarios`;
     return this.http.post<Propietario>(url, propietario);
   }
   
