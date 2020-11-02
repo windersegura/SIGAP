@@ -2,10 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Vivienda} from '../../../../models/aguapotable';
 import { AguapotableService } from '../../../../services/aguapotable.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CATALOGO_BARRIOS } from '../../../../services/config.service';
+import { ContribuyentesListComponent } from '../../contribuyentes-manager/contribuyentes-list/contribuyentes-list.component';
 
 
 
@@ -27,7 +28,8 @@ export class ViviendaEditComponent implements OnInit {
       @Inject(MAT_DIALOG_DATA) public data : any,
       private fb: FormBuilder,
       private _snacBar : MatSnackBar,
-      private aguapotableService : AguapotableService
+      private aguapotableService : AguapotableService,
+      public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class ViviendaEditComponent implements OnInit {
         barrio: [null, [Validators.required]],
         descripcion: [null, []],
         propietario: [null, [Validators.required]],
-        estado: [null, [Validators.required]],
+        estado: [null, []],
         codigo: [null, [Validators.required]],
         nombres: [null,[]],
         apellidos: [null, []],
@@ -49,5 +51,31 @@ export class ViviendaEditComponent implements OnInit {
       }
     )
   }
+
+  loadPropietarios(){
+
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(ContribuyentesListComponent, {
+       width:'900px',
+       height:'500px',
+       data:{showControltoEmit: true}
+     });
+     
+     dialogRef.afterClosed().subscribe(data =>{
+       
+         
+ 
+     }) 
+     
+   }
+
+
+  onClose(){
+    this.dialogRef.close();
+
+  }
+
 
 }

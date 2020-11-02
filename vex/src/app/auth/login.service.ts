@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { ConfigService } from '../services/config.service';
 
 
 
@@ -13,11 +14,12 @@ export class LoginService {
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService
+    private cookie: CookieService,
+    private config: ConfigService
   ) { }
 
   login(params:any): Observable<any> {
-      return this.http.post(`http://localhost:3000/auth/login`, params);
+      return this.http.post(`${this.config.appConfig.apiUrl}/auth/login`, params);
   }
 
   setToken(token:string){

@@ -24,7 +24,13 @@ export class ContribuyentesEditComponent implements OnInit {
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private aguapotableService: AguapotableService)
-   { }
+   { 
+     const prop = data.propietario
+     if(prop){
+       this.propietario = prop;
+     }
+
+   }
 
   ngOnInit(): void {
     
@@ -39,6 +45,10 @@ export class ContribuyentesEditComponent implements OnInit {
       }
     )
 
+    if(this.propietario){
+      this.form.patchValue(new Propietario(this.propietario))
+    }
+    
     if(this.data.edit){
       this.edit = this.data.edit;
     }
@@ -47,24 +57,38 @@ export class ContribuyentesEditComponent implements OnInit {
   saveContrib(){
       this.propietario = this.form.value;
       //console.log(this.propietario);
-      this.aguapotableService.createPropietario(this.propietario).subscribe(data =>{
-
-        Swal.fire({
-          icon: 'success',
-          title: 'Guardado',
-          text: 'Los datos han sido guardados',
+      if(this.propietario.id_propietario){
+        this.aguapotableService.updateContribuyente(this.propietario).subscribe(data =>{
+          this.propietario = data as Propietario;
+          this._snackBar.open('Los datos han sido Actualizados', 'Aceptar', {duration:2000});
+        }, err =>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se ha podido Actualizar la Informacion'
+          });
         })
-         
-        //this._snackBar.open('Los datos han sido guardados!', 'Aceptar', {duration: 2000});
+      }else{
+        this.aguapotableService.createPropietario(this.propietario).subscribe(data =>{
 
-      },err =>{
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Credenciales incorrectas',
-        })
+          Swal.fire({
+            icon: 'success',
+            title: 'Guardado',
+            text: 'Los datos han sido guardados',
+          })
+           
+          //this._snackBar.open('Los datos han sido guardados!', 'Aceptar', {duration: 2000});
+  
+        },err =>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Credenciales incorrectas',
+          })
+        }
+        );
       }
-      );
+      
 
     }
     

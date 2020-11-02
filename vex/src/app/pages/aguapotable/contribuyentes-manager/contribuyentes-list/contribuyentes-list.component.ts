@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import {Propietario} from '../../../../models/aguapotable'
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ContribuyentesEditComponent } from '../contribuyentes-edit/contribuyentes-edit.component';
 import data from '@iconify/icons-ic/twotone-visibility';
 import { AguapotableService } from '../../../../services/aguapotable.service';
@@ -20,15 +20,20 @@ export class ContribuyentesListComponent implements OnInit {
     'nombres', 'apellidos', 'dpi', 'direccion', 'acciones'
   ]
 
+ 
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   pageSize = 25;
   length = 0;
   page = 1;
 
+  @Input() showControltoEmit = false
 
 
   constructor(public dialog: MatDialog,
-              private aguapotableService: AguapotableService) { }
+              private aguapotableService: AguapotableService,) { 
+                
+              }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator
@@ -64,10 +69,16 @@ export class ContribuyentesListComponent implements OnInit {
   
   }
 
-  openDialog(){
+  openDialog(contribuyente : Propietario | null ){
+    
+    if (!contribuyente){
+      contribuyente = new Propietario(null);
+    }
+    //console.log(contribuyente);
+    
    const dialogRef = this.dialog.open(ContribuyentesEditComponent, {
       width:'500px',
-      data:{edit: false}
+      data:{edit: false, propietario: contribuyente}
     });
     
     dialogRef.afterClosed().subscribe(data =>{
@@ -77,5 +88,8 @@ export class ContribuyentesListComponent implements OnInit {
     }) 
     
   }
+
+
+
 
 }

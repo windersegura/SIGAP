@@ -26,6 +26,11 @@ export class AguapotableService {
     const url = `${this.config.appConfig.apiUrl}/propietarios`;
     return this.http.post<Propietario>(url, propietario);
   }
+
+  updateContribuyente(propietario: Propietario): Observable<Propietario>{
+      const url = `${this.config.appConfig.apiUrl}/propietarios/${propietario.id_propietario}`
+      return this.http.put<Propietario>(url, propietario);
+  }
   
 
 }
