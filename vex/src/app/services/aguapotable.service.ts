@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Propietario} from '../models/aguapotable'
 import { ConfigService } from './config.service';
+import { Vivienda } from '../models/aguapotable';
 
 
 @Injectable({
@@ -32,5 +33,21 @@ export class AguapotableService {
       return this.http.put<Propietario>(url, propietario);
   }
   
+
+
+  //Viviendas
+
+  createVivienda(vivienda: Vivienda): Observable<Vivienda>{
+    const url = `${this.config.appConfig.apiUrl}/viviendas`;
+    return this.http.post<Vivienda>(url,vivienda);
+  }
+
+  listViviendas(params?: any): Observable<Array<Vivienda>>{
+    const url = `${this.config.appConfig.apiUrl}/viviendas`;
+    const options ={
+      params: params
+    }
+    return this.http.get<Array<Vivienda>>(url,options);
+  }
 
 }

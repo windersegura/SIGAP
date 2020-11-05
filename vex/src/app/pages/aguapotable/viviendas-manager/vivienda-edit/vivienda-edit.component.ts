@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CATALOGO_BARRIOS } from '../../../../services/config.service';
 import { ContribuyentesListComponent } from '../../contribuyentes-manager/contribuyentes-list/contribuyentes-list.component';
+import { DialogContribuyentesListComponent } from '../dialog-contribuyentes-list/dialog-contribuyentes-list.component';
 
 
 
@@ -56,16 +57,46 @@ export class ViviendaEditComponent implements OnInit {
 
   }
 
+  save(){
+    this.vivienda = this.form.value;
+
+    this.aguapotableService.createVivienda(this.vivienda).subscribe(data =>{
+      Swal.fire({
+        icon: 'success',
+        title: 'Guardado',
+        text: 'Los datos han sido guardados',
+      })
+    }, err =>{
+      Swal.fire({
+        icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrio un error al guardar la informacion',
+      })
+    })
+
+  }
+
   openDialog(){
-    const dialogRef = this.dialog.open(ContribuyentesListComponent, {
+    const dialogRef = this.dialog.open(DialogContribuyentesListComponent, {
        width:'900px',
        height:'500px',
-       data:{showControltoEmit: true}
+       data:{showControltoEmit:true}
      });
      
-     dialogRef.afterClosed().subscribe(data =>{
+     dialogRef.afterClosed().subscribe(propietario =>{
        
-         
+         if (propietario){
+           
+           this.form.patchValue({propietario: propietario.id_propietario});
+           this.form.patchValue({nombres: propietario.nombres});
+           this.form.patchValue({apellidos: propietario.apellidos});
+           this.form.patchValue({direccion: propietario.direccion});
+           this.form.patchValue({telefono: propietario.telefono});
+           this.form.patchValue({dpi: propietario.dpi});
+           this.form.patchValue({estado: 1});
+
+          
+         }
  
      }) 
      

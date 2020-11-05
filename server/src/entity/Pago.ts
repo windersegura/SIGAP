@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, Unique, ManyToOne, CreateDateColumn} from 'typeorm';
 import {MinLength, IsNotEmpty} from 'class-validator';
 import { Vivienda } from './Vivienda';
+import { Estados } from './Estados';
 
 @Entity()
 export class Pago{
@@ -25,9 +26,9 @@ export class Pago{
     @CreateDateColumn()
     fecha: Date;
 
-    @Column()
+    @ManyToOne(type => Estados, estados => estados.pagos)
     @IsNotEmpty()
-    estado: string;
+    estado: Estados;
 
 
 }

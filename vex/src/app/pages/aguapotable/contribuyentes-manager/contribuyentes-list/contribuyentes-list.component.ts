@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -27,13 +27,16 @@ export class ContribuyentesListComponent implements OnInit {
   length = 0;
   page = 1;
 
-  @Input() showControltoEmit = false
+  @Output() selectContribuyente: EventEmitter<Propietario> = new EventEmitter();
 
 
   constructor(public dialog: MatDialog,
               private aguapotableService: AguapotableService,) { 
                 
               }
+
+
+  @Input() showControltoEmit = false;
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator
@@ -64,9 +67,6 @@ export class ContribuyentesListComponent implements OnInit {
     }, err =>{
       console.log(err);
     })
-
-    
-  
   }
 
   openDialog(contribuyente : Propietario | null ){
@@ -89,7 +89,10 @@ export class ContribuyentesListComponent implements OnInit {
     
   }
 
+  emitirContribuyente(row){
 
+    this.selectContribuyente.emit(row);
+  }
 
 
 }

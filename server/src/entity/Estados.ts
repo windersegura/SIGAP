@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany } from 'typeorm';
 import {MinLength, IsNotEmpty} from 'class-validator';
 import { Vivienda } from './Vivienda';
+import { Pago } from './Pago';
 
 @Entity()
 export class Estados {
@@ -13,4 +14,7 @@ export class Estados {
     
     @OneToMany(type =>Vivienda, vivienenda => vivienenda.estado)
     viviendas: Vivienda[];
+
+    @OneToMany(type => Pago, pago => pago.estado)
+    pagos: Pago [];
 }

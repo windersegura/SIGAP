@@ -17,5 +17,44 @@
                 <button mat-raised-button color="accent" (click)="openDialog()"> <mat-icon>add_circle</mat-icon> Registrar Vivienda</button>
             </div>
         </form>
+
+        <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="codigo">
+                <th mat-header-cell *matHeaderCellDef>Codigo</th>
+                <td mat-cell *matCellDef="let element">{{element.codigo}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="propietario">
+                <th mat-header-cell *matHeaderCellDef>Propietario</th>
+                <td mat-cell *matCellDef="let element">{{element.propietario.nombres}} {{element.propietario.apellidos}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="descripcion">
+                <th mat-header-cell *matHeaderCellDef>Descripción</th>
+                <td mat-cell *matCellDef="let element">{{element.descripcion}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef>Estado</th>
+                <td mat-cell *matCellDef="let element">
+                    <span *ngIf="element.estado.id_estado === 1" class="color_verde">Activo</span>
+                    <span *ngIf="element.estado.id_estado === 2" clas="color_rojo">Inactivo</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button type="button" matTooltip="Editar Vivienda"><mat-icon> edit</mat-icon></button>
+                    <button mat-icon-button type="button" matTooltip='Ver Historial'><mat-icon>assignment</mat-icon></button>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 100]" (page)="pageEvent($event)" showFirstLastButtons> </mat-paginator>
     </mat-card-content>
 </mat-card>

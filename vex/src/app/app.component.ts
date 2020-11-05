@@ -132,13 +132,13 @@ export class AppComponent {
           {
             type:'link',
             label: 'Pagos',
-            route:'',
+            route:'/aguapotable/pagos',
             icon: icBook
           },
           {
             type: 'link',
             label: 'Reportes',
-            route: '',
+            route: '/aguapotable/reportes',
             icon: icHistory
           }
         //   {

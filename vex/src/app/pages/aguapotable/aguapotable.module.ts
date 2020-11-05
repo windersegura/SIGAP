@@ -27,11 +27,17 @@ import { ContribuyentesEditComponent } from './contribuyentes-manager/contribuye
 import { ViviendaListComponent } from './viviendas-manager/vivienda-list/vivienda-list.component';
 import { ViviendaEditComponent } from './viviendas-manager/vivienda-edit/vivienda-edit.component';
 import { ConfigService } from '../../services/config.service';
+import { MatSortModule } from '@angular/material/sort';
+import { DialogContribuyentesListComponent } from './viviendas-manager/dialog-contribuyentes-list/dialog-contribuyentes-list.component';
+import { PagosManagerComponent } from './pagos-manager/pagos-manager.component';
+import { PagosFormComponent } from './pagos-manager/pagos-form/pagos-form.component';
+import { ReportesManagerComponent } from './reportes-manager/reportes-manager.component';
+
 
 
 
 @NgModule({
-  declarations: [ViviendasManagerComponent, ContribuyentesManagerComponent, ContribuyentesListComponent, ContribuyentesEditComponent, ViviendaListComponent, ViviendaEditComponent],
+  declarations: [ViviendasManagerComponent, ContribuyentesManagerComponent, ContribuyentesListComponent, ContribuyentesEditComponent, ViviendaListComponent, ViviendaEditComponent, DialogContribuyentesListComponent, PagosManagerComponent, PagosFormComponent, ReportesManagerComponent],
   imports: [
     CommonModule,
     AguapotableRoutingModule,
@@ -53,7 +59,8 @@ import { ConfigService } from '../../services/config.service';
     MatSelectModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSortModule
 
 
 
