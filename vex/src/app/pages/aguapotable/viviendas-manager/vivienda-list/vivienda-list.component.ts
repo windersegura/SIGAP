@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AguapotableService } from '../../../../services/aguapotable.service';
 import {Vivienda} from '../../../../models/aguapotable';
@@ -16,9 +16,11 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 })
 export class ViviendaListComponent implements OnInit {
 
+  @Output() selectedVivienda : EventEmitter<Vivienda> = new EventEmitter()
+
   dataSource = new MatTableDataSource<Vivienda>();
   displayedColumns:string [] = [
-    'codigo', 'propietario', 'descripcion', 'estado', 'acciones'
+    'codigo', 'propietario','descripcion', 'estado', 'acciones'
   ]
 
 
@@ -72,6 +74,10 @@ export class ViviendaListComponent implements OnInit {
 
     })
     
+  }
+
+  seeHistorial(vivienda: Vivienda | null){
+    this.selectedVivienda.emit(vivienda);
   }
 
 }

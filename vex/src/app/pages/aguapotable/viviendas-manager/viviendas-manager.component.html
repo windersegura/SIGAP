@@ -1,1 +1,11 @@
-<vex-vivienda-list></vex-vivienda-list>
+<mat-card>
+
+    <mat-card-content>
+        <div *ngIf="modo === 1">
+            <vex-vivienda-list (selectedVivienda)="selectedVivienda($event)"></vex-vivienda-list>
+        </div>
+        <div *ngIf="modo === 2">
+            <vex-vivienda-historial (savedHistorial)="savedVivienda($event)" [vivienda]="vivienda"></vex-vivienda-historial>
+        </div>
+    </mat-card-content>
+</mat-card>

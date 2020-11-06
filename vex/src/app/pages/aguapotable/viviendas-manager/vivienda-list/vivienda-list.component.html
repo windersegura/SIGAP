@@ -47,7 +47,7 @@
                 <th mat-header-cell *matHeaderCellDef>Acciones</th>
                 <td mat-cell *matCellDef="let element">
                     <button mat-icon-button type="button" matTooltip="Editar Vivienda"><mat-icon> edit</mat-icon></button>
-                    <button mat-icon-button type="button" matTooltip='Ver Historial'><mat-icon>assignment</mat-icon></button>
+                    <button mat-icon-button type="button" matTooltip='Ver Historial' (click)="seeHistorial(element)"><mat-icon>assignment</mat-icon></button>
                 </td>
             </ng-container>
 

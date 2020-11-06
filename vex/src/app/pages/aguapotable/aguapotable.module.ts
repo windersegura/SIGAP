@@ -32,12 +32,13 @@ import { DialogContribuyentesListComponent } from './viviendas-manager/dialog-co
 import { PagosManagerComponent } from './pagos-manager/pagos-manager.component';
 import { PagosFormComponent } from './pagos-manager/pagos-form/pagos-form.component';
 import { ReportesManagerComponent } from './reportes-manager/reportes-manager.component';
+import { ViviendaHistorialComponent } from './viviendas-manager/vivienda-historial/vivienda-historial.component';
 
 
 
 
 @NgModule({
-  declarations: [ViviendasManagerComponent, ContribuyentesManagerComponent, ContribuyentesListComponent, ContribuyentesEditComponent, ViviendaListComponent, ViviendaEditComponent, DialogContribuyentesListComponent, PagosManagerComponent, PagosFormComponent, ReportesManagerComponent],
+  declarations: [ViviendasManagerComponent, ContribuyentesManagerComponent, ContribuyentesListComponent, ContribuyentesEditComponent, ViviendaListComponent, ViviendaEditComponent, DialogContribuyentesListComponent, PagosManagerComponent, PagosFormComponent, ReportesManagerComponent, ViviendaHistorialComponent],
   imports: [
     CommonModule,
     AguapotableRoutingModule,
