@@ -46,8 +46,9 @@
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef>Acciones</th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button type="button" matTooltip="Editar Vivienda"><mat-icon> edit</mat-icon></button>
-                    <button mat-icon-button type="button" matTooltip='Ver Historial' (click)="seeHistorial(element)"><mat-icon>assignment</mat-icon></button>
+                    <button mat-icon-button type="button" matTooltip="Editar Vivienda" *ngIf="!showControlEmit"><mat-icon> edit</mat-icon></button>
+                    <button mat-icon-button type="button" matTooltip='Ver Historial' (click)="seeHistorial(element)" *ngIf="!showControlEmit"><mat-icon>assignment</mat-icon></button>
+                    <button mat-icon-button type="button" matTooltip='Agregar Vivienda' *ngIf="showControlEmit" (click)="emitirVivienda(element)"><mat-icon>add_box</mat-icon></button>
                 </td>
             </ng-container>
 

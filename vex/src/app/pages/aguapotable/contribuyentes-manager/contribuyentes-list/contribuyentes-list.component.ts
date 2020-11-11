@@ -89,6 +89,26 @@ export class ContribuyentesListComponent implements OnInit {
     
   }
 
+  editContribuyente(contribuyente : Propietario | null ){
+    
+    if (!contribuyente){
+      contribuyente = new Propietario(null);
+    }
+    //console.log(contribuyente);
+    
+   const dialogRef = this.dialog.open(ContribuyentesEditComponent, {
+      width:'500px',
+      data:{edit: true, propietario: contribuyente}
+    });
+    
+    dialogRef.afterClosed().subscribe(data =>{
+      
+        this.loadPropietarios();
+
+    }) 
+    
+  }
+
   emitirContribuyente(row){
 
     this.selectContribuyente.emit(row);

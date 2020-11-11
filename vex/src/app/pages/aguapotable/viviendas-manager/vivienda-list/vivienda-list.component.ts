@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AguapotableService } from '../../../../services/aguapotable.service';
 import {Vivienda} from '../../../../models/aguapotable';
@@ -22,6 +22,8 @@ export class ViviendaListComponent implements OnInit {
   displayedColumns:string [] = [
     'codigo', 'propietario','descripcion', 'estado', 'acciones'
   ]
+
+  @Input() showControlEmit = false
 
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -78,6 +80,10 @@ export class ViviendaListComponent implements OnInit {
 
   seeHistorial(vivienda: Vivienda | null){
     this.selectedVivienda.emit(vivienda);
+  }
+
+  emitirVivienda(row: any){
+    this.selectedVivienda.emit(row)
   }
 
 }

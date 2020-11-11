@@ -22,8 +22,9 @@ export class LoginService {
       return this.http.post(`${this.config.appConfig.apiUrl}/auth/login`, params);
   }
 
-  setToken(token:string){
+  setToken(token:string, user: any){
     localStorage.setItem("auth",token);
+    localStorage.setItem("user",JSON.stringify(user));
     
   }
 
@@ -35,8 +36,17 @@ export class LoginService {
     return !!(this.getToken());
   }
 
+  isUser(){
+    return this.getUser();
+  }
+
   public getToken():string{
     //this.cookie.get("auth");
     return localStorage.getItem("auth");
+
+  }
+
+  public getUser():any {
+    return localStorage.getItem("user");
   }
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {Propietario} from '../models/aguapotable'
 import { ConfigService } from './config.service';
 import { Vivienda } from '../models/aguapotable';
+import {Pago} from '../models/aguapotable';
 
 
 @Injectable({
@@ -48,6 +49,12 @@ export class AguapotableService {
       params: params
     }
     return this.http.get<Array<Vivienda>>(url,options);
+  }
+
+  //Pago
+  createPago(pago: Pago): Observable<Pago>{
+    const url = `${this.config.appConfig.apiUrl}/pagos`
+    return this.http.post<Pago>(url,pago);
   }
 
 }

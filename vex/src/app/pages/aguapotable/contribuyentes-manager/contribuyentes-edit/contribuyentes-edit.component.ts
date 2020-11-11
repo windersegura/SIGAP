@@ -25,9 +25,10 @@ export class ContribuyentesEditComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private aguapotableService: AguapotableService)
    { 
-     const prop = data.propietario
-     if(prop){
-       this.propietario = prop;
+     
+     if(data.propietario){
+     
+       this.propietario = data.propietario;
      }
 
    }

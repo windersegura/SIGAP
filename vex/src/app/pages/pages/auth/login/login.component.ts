@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loginService.login(params).subscribe(data =>{
-      this.loginService.setToken(data.token)
+      this.loginService.setToken(data.token, data.user);
       //console.log(data);
       this.router.navigateByUrl('/');
     },err =>{

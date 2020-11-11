@@ -40,7 +40,7 @@ export class Propietario implements iPropietario{
 }
 
 export interface iVivienda {
-    id: string;
+    id_vivienda: string;
     barrio: any;
     descripcion: string;
     propietario: any;
@@ -49,7 +49,7 @@ export interface iVivienda {
 }
 
 export class Vivienda implements iVivienda{
-    id: string;
+    id_vivienda: string;
     barrio:any;
     descripcion: string;
     propietario: any;
@@ -58,7 +58,7 @@ export class Vivienda implements iVivienda{
 
     constructor (vivienda: Vivienda){
         if(vivienda){
-            this.id = vivienda.id;
+            this.id_vivienda = vivienda.id_vivienda;
             this.barrio = vivienda.barrio;
             this.descripcion = vivienda.descripcion;
             this.propietario = vivienda.propietario;
@@ -66,12 +66,60 @@ export class Vivienda implements iVivienda{
             this.codigo = vivienda.codigo;
         
         }else{
-            this.id = null;
+            this.id_vivienda = null;
             this.barrio = null;
             this.descripcion = null;
             this.propietario = null;
             this.estado = null;
             this.codigo = null;
+        }
+    }
+
+}
+
+export interface iPago{
+    id_pago: number;
+    vivienda: number;
+    monto: number;
+    mora: number;
+    total: number;
+    estado: any;
+    mes: number;
+    año: string;
+   
+}
+
+export class Pago implements iPago{
+    id_pago:number;
+    vivienda: number;
+    monto: number;
+    mora: number;
+    total: number;
+    estado: any;
+    mes: number;
+    año: string;
+    
+
+    constructor(pago: Pago){
+        if(pago){
+            this.id_pago = pago.id_pago;
+            this.vivienda = pago.vivienda;
+            this.monto = pago.monto;
+            this.mora = pago.mora;
+            this.total = pago.total;
+            this.estado = pago.estado;
+            this.mes = pago.mes;
+            this.año = pago.año;
+            
+        }else{
+            this.id_pago=null;
+            this.vivienda = null;
+            this.monto = null;
+            this.mora = null;
+            this.total = null;
+            this.estado = null;
+            this.mes = null;
+            this.año = null;
         }
     }
 

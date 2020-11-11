@@ -3,6 +3,7 @@ import {MinLength, IsNotEmpty} from 'class-validator';
 import { Vivienda } from './Vivienda';
 import { Estados } from './Estados';
 
+
 @Entity()
 export class Pago{
     @PrimaryGeneratedColumn()
@@ -26,9 +27,11 @@ export class Pago{
     @CreateDateColumn()
     fecha: Date;
 
-    @ManyToOne(type => Estados, estados => estados.pagos)
-    @IsNotEmpty()
-    estado: Estados;
+    @Column()
+    mes: number;
+
+    @Column()
+    año: string;
 
 
 }

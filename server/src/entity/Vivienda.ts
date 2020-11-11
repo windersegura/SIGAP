@@ -30,4 +30,7 @@ export class Vivienda {
 
     @OneToMany(type => Pago, pago => pago.vivienda)
     pagos: Pago[];
+
+    @Column()
+    solvencia: boolean;
 }

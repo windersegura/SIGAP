@@ -15,6 +15,4 @@ export class Estados {
     @OneToMany(type =>Vivienda, vivienenda => vivienenda.estado)
     viviendas: Vivienda[];
 
-    @OneToMany(type => Pago, pago => pago.estado)
-    pagos: Pago [];
 }

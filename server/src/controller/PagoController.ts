@@ -6,6 +6,8 @@ import { Vivienda } from '../entity/Vivienda';
 import { validate } from 'class-validator';
 
 
+
+
 export class PagoController {
 
     static listAllPagos = async (req:Request, res: Response) =>{
@@ -21,12 +23,14 @@ export class PagoController {
 
     static createPago = async(req: Request, res: Response) => {
         const pagoRepository = getRepository(Pago);
-        const estadosRepository = getRepository(Estados)
+        
         const viviendaRepository = getRepository(Vivienda);
+       
         const pago = new Pago();
         const residencia = new Vivienda();
-        const est = new Estados();
-        const {vivienda, monto, mora, total, estado} = req.body;
+      
+        
+        const {vivienda, monto, mora, total,mes,año} = req.body;
 
         if(vivienda){
             try {
@@ -45,23 +49,13 @@ export class PagoController {
             return res.status(400).json({message: 'Falta especificar la vivienda'})
         }
         
-        if(estado){
-            try {
-                const estados = await estadosRepository.findOneOrFail(estado);
-                est.id_estado = estados.id_estado;
-                est.Estado = estados.Estado;
-                pago.estado = est;
-            } catch (e) {
-                res.status(404).json({message:'El estado especificado no existe'})
-            }
-        }else{
-            return res.status(400).json({message: 'Falta especificar el estado'})
-        }
 
 
         pago.monto = monto;
         pago.mora = mora;
         pago.total = total;
+        pago.mes = mes;
+        pago.año = año;
        
         const errors = await validate(Pago, {validationError:{target: false, value: false}});
 
@@ -74,7 +68,7 @@ export class PagoController {
             await pagoRepository.save(pago);
 
         } catch (e) {
-            return res.status(400).json({message: 'Error al registrar el pago'});
+            return res.status(400).json({message: 'Error al registrar el pago', err: e});
         }
 
         res.status(200).json({message: 'El pago fue registrado'});
