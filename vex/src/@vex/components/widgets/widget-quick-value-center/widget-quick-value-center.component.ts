@@ -7,6 +7,7 @@ import icShare from '@iconify/icons-ic/twotone-share';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ShareBottomSheetComponent } from '../../share-bottom-sheet/share-bottom-sheet.component';
 import { scaleInOutAnimation } from '../../../animations/scale-in-out.animation';
+import { AguapotableService } from '../../../../app/services/aguapotable.service';
 
 @Component({
   selector: 'vex-widget-quick-value-center',
@@ -29,8 +30,10 @@ export class WidgetQuickValueCenterComponent implements OnInit {
   icShare = icShare;
 
   showButton: boolean;
+  totalProp: number;
 
-  constructor(private _bottomSheet: MatBottomSheet) { }
+  constructor(private _bottomSheet: MatBottomSheet,
+              ) { }
 
   ngOnInit() {
   }
@@ -38,4 +41,6 @@ export class WidgetQuickValueCenterComponent implements OnInit {
   openSheet() {
     this._bottomSheet.open(ShareBottomSheetComponent);
   }
+
+
 }

@@ -7,6 +7,7 @@ import { defaultChartOptions } from '../../../../@vex/utils/default-chart-option
 import { Order, tableSalesData } from '../../../../static-data/table-sales-data';
 import { TableColumn } from '../../../../@vex/interfaces/table-column.interface';
 import icMoreVert from '@iconify/icons-ic/twotone-more-vert';
+import { AguapotableService } from '../../../services/aguapotable.service';
 
 @Component({
   selector: 'vex-dashboard-analytics',
@@ -18,6 +19,8 @@ export class DashboardAnalyticsComponent implements OnInit {
   centered = false;
   disabled = false;
   unbounded = false;
+  totalProp: number;
+  totalViv: number;
 
   tableColumns: TableColumn<Order>[] = [
     {
@@ -90,7 +93,8 @@ export class DashboardAnalyticsComponent implements OnInit {
   icTimer = icTimer;
   icMoreVert = icMoreVert;
 
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(private cd: ChangeDetectorRef,
+              private aguapotableService: AguapotableService) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -104,6 +108,26 @@ export class DashboardAnalyticsComponent implements OnInit {
         }
       ];
     }, 3000);
+
+    this.getPropietarios()
+    this.getViviendas();
+  }
+
+  getPropietarios(){
+    this.aguapotableService.listContribuyentes().subscribe(data =>{
+      this.totalProp = data.length;
+
+    },err =>{
+      console.log(err);
+    })
+  }
+
+  getViviendas(){
+    this.aguapotableService.listViviendas().subscribe(data => {
+      this.totalViv = data.length;
+    }, err => {
+      console.log(err);
+    })
   }
 
 }

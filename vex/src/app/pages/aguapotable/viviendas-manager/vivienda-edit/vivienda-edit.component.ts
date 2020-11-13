@@ -31,7 +31,13 @@ export class ViviendaEditComponent implements OnInit {
       private _snacBar : MatSnackBar,
       private aguapotableService : AguapotableService,
       public dialog: MatDialog
-  ) { }
+  ) { 
+
+    if(data.vivienda){
+      this.vivienda = data.vivienda;
+      console.log(this.vivienda);
+    }
+  }
 
   ngOnInit(): void {
 
@@ -51,6 +57,22 @@ export class ViviendaEditComponent implements OnInit {
 
       }
     )
+    if(this.vivienda){
+      this.form.patchValue(new Vivienda(this.vivienda));
+      this.form.patchValue({propietario: this.vivienda.propietario.id_propietario});
+           this.form.patchValue({nombres: this.vivienda.propietario.nombres});
+           this.form.patchValue({apellidos: this.vivienda.propietario.apellidos});
+           this.form.patchValue({direccion: this.vivienda.propietario.direccion});
+           this.form.patchValue({telefono: this.vivienda.propietario.telefono});
+           this.form.patchValue({dpi: this.vivienda.propietario.dpi});
+           this.form.patchValue({estado: 1});
+           
+
+    }
+    if(this.data.edit){
+        this.edit = this.data.edit;
+    }
+
   }
 
   loadPropietarios(){
@@ -59,7 +81,7 @@ export class ViviendaEditComponent implements OnInit {
 
   save(){
     this.vivienda = this.form.value;
-
+  
     this.aguapotableService.createVivienda(this.vivienda).subscribe(data =>{
       Swal.fire({
         icon: 'success',

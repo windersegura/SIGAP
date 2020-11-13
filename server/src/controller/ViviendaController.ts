@@ -104,7 +104,7 @@ export class ViviendaController{
     }
 
     static updateVivienda = async (req: Request, res: Response) => {
-
+        
     }
 
     static deleteVivienda = async (req: Request, res: Response) =>{

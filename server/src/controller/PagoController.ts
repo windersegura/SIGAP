@@ -30,7 +30,7 @@ export class PagoController {
         const residencia = new Vivienda();
       
         
-        const {vivienda, monto, mora, total,mes,año} = req.body;
+        const {vivienda, monto, mora, total,mes,anio} = req.body;
 
         if(vivienda){
             try {
@@ -55,7 +55,7 @@ export class PagoController {
         pago.mora = mora;
         pago.total = total;
         pago.mes = mes;
-        pago.año = año;
+        pago.anio = anio;
        
         const errors = await validate(Pago, {validationError:{target: false, value: false}});
 

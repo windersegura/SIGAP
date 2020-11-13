@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import { Response, Request } from 'express';
 import { Propietario } from '../entity/Propietario';
 import { validate } from 'class-validator';
+import { count } from 'console';
 
 
 export class PropietarioController{
@@ -13,7 +14,9 @@ export class PropietarioController{
 
         try {
            const propietarios = await propietarioRepository.find();
+          
            res.send(propietarios);
+           
         } catch (e) {
             res.status(404).json({message: 'Not results'});
         }

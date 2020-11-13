@@ -78,6 +78,26 @@ export class ViviendaListComponent implements OnInit {
     
   }
 
+  editVivienda(vivienda: Vivienda | null){
+    if (!vivienda){
+      vivienda = new Vivienda(null);
+    }
+    //console.log(contribuyente);
+    
+   const dialogRef = this.dialog.open(ViviendaEditComponent, {
+      width:'70%',
+     
+      data:{edit: true, vivienda: vivienda}
+    });
+    
+    dialogRef.afterClosed().subscribe(data =>{
+      
+        this.loadViviendas();
+
+    }) 
+  }
+
+
   seeHistorial(vivienda: Vivienda | null){
     this.selectedVivienda.emit(vivienda);
   }

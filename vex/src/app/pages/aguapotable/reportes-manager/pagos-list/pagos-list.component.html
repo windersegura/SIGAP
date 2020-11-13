@@ -1,0 +1,83 @@
+<mat-card>
+    <mat-card-header>
+        <h2>Pagos Realizados</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+                <mat-form-field fxFlex="auto">
+                    <mat-label>Mes</mat-label>
+                    <mat-select matInput>
+                        <mat-option *ngFor="let mes of meses" [value]="mes.id">{{mes.mes}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="auto">
+                    <mat-label>Año</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
+                <!-- <mat-form-field fxFlex="30%">
+                    <mat-label>Barrio</mat-label>
+                    <mat-select matInput>
+                        <mat-option *ngFor="let barrio of barrios" [value]="barrio.id">{{barrio.barrio}}</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+                <mat-form-field fxFlex="auto">
+                    <mat-label>Codigo Vivienda</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px" fxLayoutAlign="center center">
+                <button mat-raised-button color="primary"><mat-icon>search</mat-icon> Filtrar</button>
+            </div>
+        </form>
+
+
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                <td mat-cell *matCellDef="let element">{{element.fecha |date:"dd/MM/yyy"}}</td>
+            </ng-container>
+            <ng-container matColumnDef="codigo">
+                <th mat-header-cell *matHeaderCellDef>Codigo Vivienda</th>
+                <td mat-cell *matCellDef="let element">{{element.vivienda.codigo}}</td>
+            </ng-container>
+            <ng-container matColumnDef="mes">
+                <th mat-header-cell *matHeaderCellDef>Mes Pagado</th>
+                <td mat-cell *matCellDef="let element">
+                    <span *ngIf="element.mes === 1">Enero</span>
+                    <span *ngIf="element.mes === 2">Febrero</span>
+                    <span *ngIf="element.mes === 3">Marzo</span>
+                    <span *ngIf="element.mes === 4">Abril</span>
+                    <span *ngIf="element.mes === 5">Mayo</span>
+                    <span *ngIf="element.mes === 6">Junio</span>
+                    <span *ngIf="element.mes === 7">Julio</span>
+                    <span *ngIf="element.mes === 8">Agosto</span>
+                    <span *ngIf="element.mes === 9">Septiembre</span>
+                    <span *ngIf="element.mes === 10">Octubre</span>
+                    <span *ngIf="element.mes === 11">Noviembre</span>
+                    <span *ngIf="element.mes === 12">Diciembre</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="año">
+                <th mat-header-cell *matHeaderCellDef>Año</th>
+                <td mat-cell *matCellDef="let element">{{element.anio}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef>Total</th>
+                <td mat-cell *matCellDef="let element">{{element.total}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+
+
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 100]" (page)="pageEvent($event)" showFirstLastButtons> </mat-paginator>
+    </mat-card-content>
+</mat-card>

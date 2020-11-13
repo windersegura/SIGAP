@@ -85,7 +85,7 @@ export interface iPago{
     total: number;
     estado: any;
     mes: number;
-    año: string;
+    anio: string;
    
 }
 
@@ -97,7 +97,7 @@ export class Pago implements iPago{
     total: number;
     estado: any;
     mes: number;
-    año: string;
+    anio: string;
     
 
     constructor(pago: Pago){
@@ -109,7 +109,7 @@ export class Pago implements iPago{
             this.total = pago.total;
             this.estado = pago.estado;
             this.mes = pago.mes;
-            this.año = pago.año;
+            this.anio = pago.anio;
             
         }else{
             this.id_pago=null;
@@ -119,7 +119,7 @@ export class Pago implements iPago{
             this.total = null;
             this.estado = null;
             this.mes = null;
-            this.año = null;
+            this.anio = null;
         }
     }
 

@@ -31,7 +31,7 @@ export class Pago{
     mes: number;
 
     @Column()
-    año: string;
+    anio: string;
 
 
 }

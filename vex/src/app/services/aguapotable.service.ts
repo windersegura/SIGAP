@@ -52,6 +52,15 @@ export class AguapotableService {
   }
 
   //Pago
+  
+  listPagos(params?: any): Observable<Array<Pago>>{
+    const url = `${this.config.appConfig.apiUrl}/pagos`
+    const options ={
+      params: params
+    }
+    return this.http.get<Array<Pago>>(url,options);
+  }
+
   createPago(pago: Pago): Observable<Pago>{
     const url = `${this.config.appConfig.apiUrl}/pagos`
     return this.http.post<Pago>(url,pago);

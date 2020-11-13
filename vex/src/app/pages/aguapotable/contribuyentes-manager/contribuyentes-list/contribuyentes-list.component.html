@@ -8,11 +8,17 @@
     </mat-card-header>
     <mat-card-content>
         <form>
-            <div fxLayout="column" fxLayoutAlign="space-between center">
-                <mat-form-field class="full-width">
-                    <mat-label>Buscar por Nombre o Identificacion del contrbuyente</mat-label>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px" fxLayoutAlign="center center">
+                <mat-form-field fxLayout="40%">
+                    <mat-label>Nombre</mat-label>
                     <input matInput type="text">
                 </mat-form-field>
+
+                <mat-form-field fxLayout="40%">
+                    <mat-label>Identificacion</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
+
 
             </div>
             <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap.gt-sm="16px">
